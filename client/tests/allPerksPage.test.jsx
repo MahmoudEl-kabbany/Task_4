@@ -70,7 +70,7 @@ describe('AllPerks page (Directory)', () => {
 
     // Interact with the merchant filter dropdown using the real value that
     // corresponds to the seeded record.
-    const merchantFilter = screen.getByLabelText('Filter by merchant');
+    const merchantFilter = screen.getByRole('combobox');
     fireEvent.change(merchantFilter, { target: { value: seededPerk.merchant } });
 
     await waitFor(() => {

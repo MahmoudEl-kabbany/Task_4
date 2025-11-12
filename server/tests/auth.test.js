@@ -77,7 +77,10 @@ describe('Authentication controller integration', () => {
     const response = await fetch(`${baseUrl}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(credentials)
+      body: JSON.stringify({
+        email: credentials.email,
+        password: credentials.password
+      })
     });
 
     const payload = await response.json();
@@ -85,6 +88,7 @@ describe('Authentication controller integration', () => {
     expect(payload.token).toBeTruthy();
     expect(payload.user.email).toBe(credentials.email.toLowerCase());
     expect(payload.user).not.toHaveProperty('passwordHash');
+
     issuedToken = payload.token;
   });
 
